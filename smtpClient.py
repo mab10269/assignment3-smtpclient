@@ -34,5 +34,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     clientsocket.send(quitcommand.encode())
     recv6 = clientsocket.recv(1024).decode()
 
+    clientsocket.close()
+
 if __name__ == '__main__':
     smtp_client(1025, '127.0.0.1')
