@@ -4,8 +4,8 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     msg = "\r\n My message"
     endmsg = "\r\n.\r\n"
 
-    clientsocket = socket(af_inet, sock_stream)
-    clientsocket.connect((mailserver, port))
+    clientSocket = socket(af_inet, sock_stream)
+    clientSocket.connect((mailserver, port))
     
     recv = clientSocket.recv(1024).decode()
 
@@ -14,27 +14,27 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     recv1 = clientSocket.recv(1024).decode()
 
     mailfromcommand = "mail from: <alice@example.com>\r\n"
-    clientsocket.send(mailfromcommand.encode())
-    recv2 = clientsocket.recv(1024).decode()
+    clientSocket.send(mailfromcommand.encode())
+    recv2 = clientSocket.recv(1024).decode()
     
     rctptocommand = "rcpt to: <bob@example.com>\r\n"
-    clientsocket.send(rcpttocommand.encode())
-    recv3 = clientsocket.recv(1024).decode()
+    clientSocket.send(rcpttocommand.encode())
+    recv3 = clientSocket.recv(1024).decode()
     
     datacommand = "data\r\n"
-    clientsocket.send(datacommand.encode())
-    recv4 = clientsocket.recv(1024).decode()
+    clientSocket.send(datacommand.encode())
+    recv4 = clientSocket.recv(1024).decode()
     
-    clientsocket.send(msg.encode())
+    clientSocket.send(msg.encode())
     
-    clientsocket.send(endmsg.encode())
-    recv5 = clientsocket.recv(1024).decode()
+    clientSocket.send(endmsg.encode())
+    recv5 = clientSocket.recv(1024).decode()
     
     quitcommand = "quit\r\n"
-    clientsocket.send(quitcommand.encode())
-    recv6 = clientsocket.recv(1024).decode()
+    clientSocket.send(quitcommand.encode())
+    recv6 = clientSocket.recv(1024).decode()
 
-    clientsocket.close()
+    clientSocket.close()
 
 if __name__ == '__main__':
     smtp_client(1025, '127.0.0.1')
