@@ -4,7 +4,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     msg = "\r\n My message"
     endmsg = "\r\n.\r\n"
 
-    clientSocket = socket(af_inet, sock_stream)
+    clientSocket = socket(AF_INET, SOCK_STREAM)
     clientSocket.connect((mailserver, port))
     
     recv = clientSocket.recv(1024).decode()
